@@ -1,4 +1,4 @@
-import type { TBreakpoint, TBreakpointNames } from "@theme";
+import type { TBreakpointNames, TBreakpoint } from "@theme";
 import { theme } from "@theme";
 
 /**
@@ -9,20 +9,14 @@ import { theme } from "@theme";
  * @ignore
  */
 const getBreakpoint = (name: TBreakpointNames): string | null => {
-  const breakpoints: TBreakpoint[] = theme?.breakpoints;
+  const { breakpoints } = theme;
   if (!breakpoints) return null;
 
-  const breakpoint: TBreakpoint = breakpoints.find(
-    /**
-     * It seems comparisions have to be type casted.
-     * @see https://github.com/microsoft/TypeScript/issues/25642
-     */
-    (item: TBreakpoint) => String(item.name) === String(name)
+  const breakpoint = breakpoints.find(
+    (item: TBreakpoint) => item.name === name
   );
 
-  const query: string = breakpoint?.value
-    ? `min-width: ${breakpoint.value}px`
-    : null;
+  const query = breakpoint?.value ? `min-width: ${breakpoint.value}px` : null;
 
   return query ? `@media(${query})` : null;
 };

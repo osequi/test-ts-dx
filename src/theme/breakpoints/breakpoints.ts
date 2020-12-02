@@ -1,8 +1,14 @@
 /**
+ * Defines the breakpoint names interface.
+ */
+export interface TBreakpointNames {
+  name: "mobile" | "tablet" | "laptop" | "desktop";
+}
+
+/**
  * Defines the breakpoint interface.
  */
-export interface TBreakpoint {
-  name: "mobile" | "tablet" | "laptop" | "desktop";
+export interface TBreakpoint extends TBreakpointNames {
   /**
    * The breakpoint value in pixels.
    */
