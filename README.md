@@ -24,6 +24,34 @@ See https://github.com/osequi/somenage/issues/4
   - Interfaces display better
   - Interfaces are cached
 
+- The React TypeScript cheatsheet says:
+  - https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/types_or_interfaces
+  - always use interface for public API's definition when authoring a library or 3rd party ambient type definitions, as this allows a consumer to extend them via declaration merging if some definitions are missing.
+
+### In practice, types work better than interfaces
+
+```js
+// Interfaces
+const breakpoint: TBreakpoint = breakpoints.find(
+  /**
+   * // NOTE: It seems comparisions have to be type casted.
+   * @see https://github.com/microsoft/TypeScript/issues/25642
+   */
+  (item: TBreakpoint) => String(item.name) === String(name)
+);
+```
+
+vs
+
+```js
+// Types
+const breakpoint = breakpoints.find((item: TBreakpoint) => item.name === name);
+```
+
+With interfaces `useBreakpoint('mobile')` is not working, fails with the error: `Argument of type 'string' is not assignable to parameter of type 'TBreakpointNames | TBreakpointNames[]'.`
+
+With types `useBreakpoint('mobile')` works just as expected: allows only the enumerated values.
+
 ## Return types
 
 - https://github.com/microsoft/TypeScript/wiki/Performance#using-type-annotations
@@ -34,3 +62,9 @@ See https://github.com/osequi/somenage/issues/4
 - https://github.com/microsoft/TypeScript/wiki/Performance#preferring-base-types-over-unions
 - Prefer base types vs unions
 - Avoiding unions also removes a strong reason to use types vs interfaces.
+
+## React.FC
+
+- https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/function_components
+- It's better without, but the return type needs to be set.
+- It turns out TS sets the return type automatically to `JSX.Element`. Just hover on any React function component and see the return type. Also: https://www.typescriptlang.org/docs/handbook/jsx.html#function-component says: `TS enforces that its return type must be assignable to JSX.Element.`

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, Context } from "react";
 import { ThemeContext } from "@pages/index";
 
 /**
@@ -11,7 +11,7 @@ import { ThemeContext } from "@pages/index";
  * @example
  * const theme = useTheme()
  */
-const useTheme = () => {
+const useTheme = (): Context<typeof ThemeContext> => {
   return useContext(ThemeContext);
 };
 

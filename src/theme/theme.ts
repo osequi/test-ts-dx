@@ -1,11 +1,11 @@
 import type { TBreakpoint } from "./breakpoints";
 import { breakpoints } from "./breakpoints";
 
-interface theme {
+interface TTheme {
   breakpoints: TBreakpoint[];
 }
 
-const theme = {
+const theme: TTheme = {
   breakpoints: breakpoints,
 };
 

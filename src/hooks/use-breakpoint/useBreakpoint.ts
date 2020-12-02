@@ -14,7 +14,7 @@ const getBreakpoint = (name: TBreakpointNames): string | null => {
 
   const breakpoint: TBreakpoint = breakpoints.find(
     /**
-     * It seems comparisions have to be type casted.
+     * // NOTE: It seems comparisions have to be type casted.
      * @see https://github.com/microsoft/TypeScript/issues/25642
      */
     (item: TBreakpoint) => String(item.name) === String(name)

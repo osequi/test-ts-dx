@@ -1,10 +1,10 @@
-import React, { createContext } from "react";
+import React, { createContext, Context } from "react";
 import { theme } from "@theme";
 import { Home } from "@components/Home";
 
 import "normalize.css";
 
-const ThemeContext = createContext(null);
+const ThemeContext: Context<any> = createContext(null);
 
 const HomePage = () => {
   return (
