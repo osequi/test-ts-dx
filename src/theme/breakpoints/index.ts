@@ -1,2 +1,2 @@
-export type { TBreakpoint, TBreakpointNames } from "./breakpoints";
-export { default as breakpoints, breakpointNames } from "./breakpoints";
+export type { TBreakpoint } from "./breakpoints";
+export { default as breakpoints } from "./breakpoints";
