@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react" // @see https://github.com/vercel/next.js/issues/8663
+  }
+}
